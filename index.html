@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kitab AI - Ask your papers anything. Document Q&amp;A tool for researchers and students.">
+  <title>Kitab AI - Ask your papers anything</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-layout">
+    <header class="app-header">
+      <div class="brand">
+        <img id="brand-logo" src="/assets/logo.svg" alt="Kitab AI logo" class="brand-logo">
+        <span id="brand-wordmark" class="brand-wordmark hidden">Kitab AI</span>
+        <p class="tagline">Ask your papers anything.</p>
+      </div>
+      <div class="header-actions">
+        <button id="btn-new-doc" type="button" class="btn btn-secondary hidden">New document</button>
+      </div>
+    </header>
+
+    <div id="error-container" class="error-container" role="alert" aria-live="assertive"></div>
+
+    <main class="app-main">
+      <!-- Upload View -->
+      <section id="upload-view" class="view upload-view">
+        <div class="upload-card">
+          <input type="file" id="file-input" class="file-input" accept=".pdf,application/pdf">
+          <label for="file-input" id="drop-zone" class="drop-zone" role="button" tabindex="0" aria-label="Upload research paper PDF">
+            <div class="upload-icon-wrapper">
+              <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+            </div>
+            <h1 class="upload-title">Kitab AI</h1>
+            <p class="upload-prompt">Drop your research paper here, or <span class="upload-link">browse files</span></p>
+            <p class="upload-subtext">PDF only, max 20 MB</p>
+          </label>
+          <div id="upload-status" class="upload-status hidden">
+            <div class="spinner" aria-hidden="true"></div>
+            <p id="upload-status-text" class="upload-status-text">Processing document...</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chat View -->
+      <section id="chat-view" class="view chat-view hidden">
+        <aside class="doc-bar" aria-label="Active document details">
+          <div class="doc-meta">
+            <span class="doc-icon" aria-hidden="true">📄</span>
+            <span id="doc-filename" class="doc-filename"></span>
+            <span id="doc-pages" class="doc-pages-badge"></span>
+          </div>
+        </aside>
+
+        <section id="chat-messages" class="chat-messages" aria-live="polite">
+          <div id="empty-state" class="empty-state">
+            <div class="empty-state-icon" aria-hidden="true">💡</div>
+            <h2 class="empty-state-title">Ask a question about your paper</h2>
+            <p class="empty-state-desc">Select an example question below or type your own to get answers with page citations.</p>
+            <div class="example-questions">
+              <button type="button" class="example-btn">What is the main contribution of this paper?</button>
+              <button type="button" class="example-btn">What methodology was used?</button>
+              <button type="button" class="example-btn">What are the limitations?</button>
+            </div>
+          </div>
+        </section>
+
+        <footer class="chat-input-bar">
+          <form id="chat-form" class="chat-form">
+            <label for="question-input" class="sr-only">Ask a question about the document</label>
+            <textarea
+              id="question-input"
+              class="question-input"
+              rows="1"
+              placeholder="Ask a question about this paper..."
+              required
+            ></textarea>
+            <button id="btn-send" type="submit" class="btn btn-primary" aria-label="Send question">
+              <svg class="send-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+        </footer>
+      </section>
+    </main>
+  </div>
+  <script src="/script.js"></script>
+</body>
+</html>
